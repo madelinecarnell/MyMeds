@@ -23,7 +23,7 @@ namespace MyMeds.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Profiles()
         {
             return View();
         }
