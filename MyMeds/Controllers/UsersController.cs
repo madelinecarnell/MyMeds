@@ -10,85 +10,85 @@ using MyMeds.Models;
 
 namespace MyMeds.Controllers
 {
-    public class ProfilesController : Controller
+    public class UsersController : Controller
     {
         private readonly MyMedsContext _context;
 
-        public ProfilesController(MyMedsContext context)
+        public UsersController(MyMedsContext context)
         {
             _context = context;
         }
 
-        // GET: Profiles
+        // GET: Users
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Profile.ToListAsync());
+            return View(await _context.Users.ToListAsync());
         }
 
-        // GET: Profiles/Details/5
-        public async Task<IActionResult> Details(string id)
+        // GET: Users/Details/5
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var profile = await _context.Profile
-                .FirstOrDefaultAsync(m => m.Prescriber == id);
-            if (profile == null)
+            var user = await _context.Users
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return View(profile);
+            return View(user);
         }
 
-        // GET: Profiles/Create
+        // GET: Users/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Profiles/Create
+        // POST: Users/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Prescriber,PrescriberPhone,Pharmacy,PharmacyPhone")] Profile profile)
+        public async Task<IActionResult> Create([Bind("ID,UserName,Prescriber,PrescriberPhone,Pharmacy,PharmacyPhone")] User user)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(profile);
+                _context.Add(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(profile);
+            return View(user);
         }
 
-        // GET: Profiles/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        // GET: Users/Edit/5
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var profile = await _context.Profile.FindAsync(id);
-            if (profile == null)
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
             {
                 return NotFound();
             }
-            return View(profile);
+            return View(user);
         }
 
-        // POST: Profiles/Edit/5
+        // POST: Users/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Prescriber,PrescriberPhone,Pharmacy,PharmacyPhone")] Profile profile)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,UserName,Prescriber,PrescriberPhone,Pharmacy,PharmacyPhone")] User user)
         {
-            if (id != profile.Prescriber)
+            if (id != user.ID)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace MyMeds.Controllers
             {
                 try
                 {
-                    _context.Update(profile);
+                    _context.Update(user);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProfileExists(profile.Prescriber))
+                    if (!UserExists(user.ID))
                     {
                         return NotFound();
                     }
@@ -113,41 +113,41 @@ namespace MyMeds.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(profile);
+            return View(user);
         }
 
-        // GET: Profiles/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        // GET: Users/Delete/5
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var profile = await _context.Profile
-                .FirstOrDefaultAsync(m => m.Prescriber == id);
-            if (profile == null)
+            var user = await _context.Users
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return View(profile);
+            return View(user);
         }
 
-        // POST: Profiles/Delete/5
+        // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var profile = await _context.Profile.FindAsync(id);
-            _context.Profile.Remove(profile);
+            var user = await _context.Users.FindAsync(id);
+            _context.Users.Remove(user);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ProfileExists(string id)
+        private bool UserExists(int id)
         {
-            return _context.Profile.Any(e => e.Prescriber == id);
+            return _context.Users.Any(e => e.ID == id);
         }
     }
 }

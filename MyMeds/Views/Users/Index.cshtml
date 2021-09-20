@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MyMeds.Models.Profile>
+﻿@model IEnumerable<MyMeds.Models.User>
 
 @{
     ViewData["Title"] = "Index";
@@ -12,6 +12,12 @@
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prescriber)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.PrescriberPhone)
             </th>
@@ -28,6 +34,12 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prescriber)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.PrescriberPhone)
             </td>
             <td>
@@ -37,9 +49,9 @@
                 @Html.DisplayFor(modelItem => item.PharmacyPhone)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Prescriber">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Prescriber">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Prescriber">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
             </td>
         </tr>
 }

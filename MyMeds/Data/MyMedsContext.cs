@@ -9,11 +9,15 @@ namespace MyMeds.Data
 {
     public class MyMedsContext : DbContext
     {
-        public MyMedsContext (DbContextOptions<MyMedsContext> options)
-            : base(options)
+        public MyMedsContext(DbContextOptions<MyMedsContext> options) : base(options) { }
+
+        public DbSet<User> Users { get; set; }
+        public DbSet<Medication> Medications { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
+            options.UseSqlServer(@"Data Source=.;Initial Catalog=MyMeds;Integrated Security=True;");
         }
 
-        public DbSet<MyMeds.Models.Profile> Profile { get; set; }
     }
 }
