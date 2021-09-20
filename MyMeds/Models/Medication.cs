@@ -8,7 +8,7 @@ namespace MyMeds.Models
 {
     public class Medication
     {
-        public int MeciationID { get; set; }
+        public int MedicationID { get; set; }
         public int UserID { get; set; }
         public string MedicationName { get; set; }
         public string Directions { get; set; }
