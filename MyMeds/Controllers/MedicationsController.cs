@@ -12,6 +12,7 @@ namespace MyMeds.Controllers
 {
     public class MedicationsController : Controller
     {
+       
         private readonly MyMedsContext _context;
 
         public MedicationsController(MyMedsContext context)
