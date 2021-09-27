@@ -56,12 +56,14 @@ namespace MyMeds.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,UserName,Prescriber,PrescriberPhone,Pharmacy,PharmacyPhone")] User user)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && user.Pharmacy != null || user.PharmacyPhone != null || user.Prescriber != null || user.PrescriberPhone != null)
             {
                 _context.Add(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
+            ModelState.AddModelError("Error", "One field must be filled out");
             return View(user);
         }
 
@@ -93,7 +95,7 @@ namespace MyMeds.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && user.Pharmacy != null || user.PharmacyPhone != null || user.Prescriber != null || user.PrescriberPhone != null)
             {
                 try
                 {
@@ -113,6 +115,8 @@ namespace MyMeds.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
+            ModelState.AddModelError("Error", "One field must be filled out");
             return View(user);
         }
 
