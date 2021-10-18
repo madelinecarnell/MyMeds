@@ -45,14 +45,14 @@ namespace MyMeds.Data
             }
             context.SaveChanges();
 
-            var logons = new Logon[]
+            var logon = new Logon[]
             {
                 new Logon{Id=1,UserId= "MaddieC",Password= "123"},
                 new Logon{Id=2,UserId= "ILoveDogs",Password= "1234"},
-                new Logon{Id=1,UserId= "Hazel",Password= "12345"},
+                new Logon{Id=3,UserId= "Hazel",Password= "12345"},
 
             };
-            foreach (Logon l in logons)
+            foreach (Logon l in logon)
             {
                 context.Logons.Add(l);
             }

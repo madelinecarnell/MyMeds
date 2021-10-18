@@ -16,6 +16,15 @@ namespace MyMeds.Data
         public DbSet<Medication> Medications { get; set; }
         public DbSet<Logon> Logons { get; set; }
 
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Logon>().ToTable("Logons");
+            modelBuilder.Entity<User>().ToTable("Users");
+            modelBuilder.Entity<Medication>().ToTable("Medications");
+        }
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             options.UseSqlServer(@"Data Source=.;Initial Catalog=MyMeds;Integrated Security=True;");
