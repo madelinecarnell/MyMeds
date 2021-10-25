@@ -1,7 +1,29 @@
-﻿@{
+﻿
+@model IEnumerable<MyMeds.Models.Medication>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">MyMeds</h1>
 </div>
+
+
+<div>
+    <h2>
+        Daily Reminders for <span id='date'></span>
+    </h2>
+    <input type="checkbox"/>
+    <label>Medication</label>
+    <input type="checkbox"/>
+    <label>Refill Lipitor by 10/31/21</label>
+</div>
+
+
+<script>
+    var dt = new Date();
+    var dateFormat = dt.toDateString();
+    document.getElementById('date').innerHTML = dateFormat;
+</script>
+

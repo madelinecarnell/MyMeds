@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MyMeds.Models;
@@ -13,6 +14,16 @@ namespace MyMeds.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<Medication> Medications { get; set; }
+        public DbSet<LogonModel> Logons { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<LogonModel>().ToTable("Logons");
+            modelBuilder.Entity<User>().ToTable("Users");
+            modelBuilder.Entity<Medication>().ToTable("Medications");
+        }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {

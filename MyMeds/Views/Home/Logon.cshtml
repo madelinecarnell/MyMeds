@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Logon";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Newtonsoft.Json
+@model MyMeds.Models.LogonModel
+
+<h1>Logon</h1>
+
+@using (Html.BeginForm("LoginBtn", "Home", FormMethod.Post))
+{
+    <td>
+        @Html.TextBoxFor(model => model.UserId)
+        @Html.ValidationMessageFor(model => model.UserId)
+    </td>
+    <td>
+        @Html.TextBoxFor(model => model.Password)
+        @Html.ValidationMessageFor(model => model.Password)
+    </td>
+    <input type="submit" value="LoginBtn" />
+}
+

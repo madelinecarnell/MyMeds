@@ -44,6 +44,19 @@ namespace MyMeds.Data
                 context.Medications.Add(c);
             }
             context.SaveChanges();
+
+            var logon = new LogonModel[]
+            {
+                new LogonModel{Id=1,UserId= "MaddieC",Password= "123"},
+                new LogonModel{Id=2,UserId= "ILoveDogs",Password= "1234"},
+                new LogonModel{Id=3,UserId= "Hazel",Password= "12345"},
+
+            };
+            foreach (var l in logon)
+            {
+                context.Logons.Add(l);
+            }
+            context.SaveChanges();
         }
     }
 }
