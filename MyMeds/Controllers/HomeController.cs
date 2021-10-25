@@ -42,6 +42,7 @@ namespace MyMeds.Controllers
         public IActionResult LoginBtn(LogonModel model, string userId, string password)
         {
             var con = new SqlConnection(@"Data Source=.;Initial Catalog=MyMeds;Integrated Security=True;");
+            if (userId == null || password == null) return View("Logon");
             var cmd = new SqlCommand("SELECT * FROM dbo.Logons WHERE UserId=@UserId and Password=@Password", con);
             cmd.Parameters.AddWithValue("@UserId", userId);
             cmd.Parameters.AddWithValue("@Password", password);

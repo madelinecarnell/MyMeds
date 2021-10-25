@@ -11,9 +11,9 @@ namespace MyMeds.Models
     public class LogonModel
     {
         public int Id { get; set; }
+        [Required(ErrorMessage = "Invalid User Name")]
         public string UserId { get; set; }
-        [Required]
-        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Password must contain minimum eight characters, one letter, and one number.")]
+        [Required(ErrorMessage = "Invalid Password")]
         public string Password { get; set; }
     }
 }

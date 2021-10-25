@@ -5,12 +5,18 @@ using MyMeds.Models;
 using Moq;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using MyMeds.Data;
 
 namespace MyMedsTest
 {
     public class MyMedsTest
     {
-        private List<Medication> medications; 
+        private List<Medication> medications;
+        private readonly ILogger<HomeController> _logger;
+
 
         [SetUp]
         public void Setup()
@@ -38,6 +44,30 @@ namespace MyMedsTest
             var amount = medications.Count();
             bool amountOfMeds = amount.Equals(2);
             Assert.IsTrue(amountOfMeds);
+        }
+
+        [Test]
+        public void ShouldLogonUser()
+        {
+            var logon = new LogonModel();
+            logon.UserId = "MaddieCarnell";
+            logon.Password = "Maddie1";
+            var controller = new HomeController(_logger);
+            var homeLogon = controller.LoginBtn(logon, logon.UserId, logon.Password);
+            var result = homeLogon.ToString();
+            Assert.IsFalse(result.Contains("Logon"));
+        }
+
+        [Test]
+        public void ShouldNotLogonUser()
+        {
+            var logon = new LogonModel();
+            logon.UserId = "test";
+            logon.Password = "";
+            var controller = new HomeController(_logger);
+            var homeLogon = controller.LoginBtn(logon, logon.UserId, logon.Password);
+            var config = homeLogon.ToString();
+            Assert.IsFalse(config.Contains("Index"));
         }
     }
 }

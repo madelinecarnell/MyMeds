@@ -2,74 +2,21 @@
     ViewData["Title"] = "Logon";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using Newtonsoft.Json
 @model MyMeds.Models.LogonModel
 
 <h1>Logon</h1>
 
 @using (Html.BeginForm("LoginBtn", "Home", FormMethod.Post))
 {
-    @Html.TextBoxFor(model => model.UserId)
-    @Html.TextBoxFor(model => model.Password)
-    <input type="submit" value="LoginBtn"/>
+    <td>
+        @Html.TextBoxFor(model => model.UserId)
+        @Html.ValidationMessageFor(model => model.UserId)
+    </td>
+    <td>
+        @Html.TextBoxFor(model => model.Password)
+        @Html.ValidationMessageFor(model => model.Password)
+    </td>
+    <input type="submit" value="LoginBtn" />
 }
-@*<form id="form1" runat="server">
-    <div>
-        <table style="width:100%;">
-            <caption class="style1">
-                <strong>Login Form</strong>
-            </caption>
-            <tr>
-                <td class="style2">
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td class="style2">
-                    Username:
-                </td>
-                <td>
-                    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-                </td>
-                <td>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
-                                                ControlToValidate="TextBox1" ErrorMessage="Please Enter Your Username"
-                                                ForeColor="Red"></asp:RequiredFieldValidator>
-                </td>
-            </tr>
-            <tr>
-                <td class="style2">
-                    word:
-                </td>
-                <td>
-                    <asp:TextBox ID="TextBox2" TextMode="word" runat="server"></asp:TextBox>
-                </td>
-                <td>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
-                                                ControlToValidate="TextBox2" ErrorMessage="Please Enter Your word"
-                                                ForeColor="Red"></asp:RequiredFieldValidator>
-                </td>
-            </tr>
-            <tr>
-                <td class="style2">
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td class="style2">
-                </td>
-                <td>
-                    <button type="button" onclick="location.href = '@Url.Action("", "Home" )'"></button>
-                </td>
-                <td>
-                    <asp:Label ID="Label1" runat="server"></asp:Label>
-                </td>
-            </tr>
-        </table>
-    </div>
-</form>*@
+
