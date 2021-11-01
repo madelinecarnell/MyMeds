@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using MyMeds.Models;
 
 namespace MyMeds.Controllers
 {
+    [Authorize]
     public class MedicationsController : Controller
     {
        
@@ -35,7 +37,7 @@ namespace MyMeds.Controllers
             }
 
             var medication = await _context.Medications
-                .FirstOrDefaultAsync(m => m.MedicationID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (medication == null)
             {
                 return NotFound();
@@ -55,7 +57,7 @@ namespace MyMeds.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MedicationID,UserID,MedicationName,Directions,Prescriber,Refills,Pharmacy,TimeTaken")] Medication medication)
+        public async Task<IActionResult> Create([Bind("Id,LogonsId,MedicationName,Directions,Prescriber,Refills,Pharmacy,TimeTaken")] MedicationModel medication)
         {
             if (ModelState.IsValid)
             {
@@ -87,9 +89,9 @@ namespace MyMeds.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MedicationID,UserID,MedicationName,Directions,Prescriber,Refills,Pharmacy,TimeTaken")] Medication medication)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,LogonsId,MedicationName,Directions,Prescriber,Refills,Pharmacy,TimeTaken")] MedicationModel medication)
         {
-            if (id != medication.MedicationID)
+            if (id != medication.Id)
             {
                 return NotFound();
             }
@@ -103,7 +105,7 @@ namespace MyMeds.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MedicationExists(medication.MedicationID))
+                    if (!MedicationExists(medication.Id))
                     {
                         return NotFound();
                     }
@@ -126,7 +128,7 @@ namespace MyMeds.Controllers
             }
 
             var medication = await _context.Medications
-                .FirstOrDefaultAsync(m => m.MedicationID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (medication == null)
             {
                 return NotFound();
@@ -148,7 +150,7 @@ namespace MyMeds.Controllers
 
         private bool MedicationExists(int id)
         {
-            return _context.Medications.Any(e => e.MedicationID == id);
+            return _context.Medications.Any(e => e.Id == id);
         }
     }
 }

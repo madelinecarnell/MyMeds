@@ -12,16 +12,16 @@ namespace MyMeds.Data
     {
         public MyMedsContext(DbContextOptions<MyMedsContext> options) : base(options) { }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<Medication> Medications { get; set; }
+        //public DbSet<User> Users { get; set; }
+        public DbSet<MedicationModel> Medications { get; set; }
         public DbSet<LogonModel> Logons { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<LogonModel>().ToTable("Logons");
-            modelBuilder.Entity<User>().ToTable("Users");
-            modelBuilder.Entity<Medication>().ToTable("Medications");
+            //modelBuilder.Entity<User>().ToTable("Users");
+            modelBuilder.Entity<MedicationModel>().ToTable("Medications");
         }
 
 

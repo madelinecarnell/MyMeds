@@ -21,15 +21,15 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Medications" asp-action="Index">Medications</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Logons" asp-action="Index">User Information</a>
-                        </li>
+                        @if(ViewBag.Name != null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="DailyTask" asp-action="Index">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Medications" asp-action="Index">Medications</a>
+                            </li>
+                        }
                         <li class="nav-item float-left">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logon">Login</a>
                         </li>
@@ -46,7 +46,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - MyMeds - <a asp-area="" asp-controller="Logons" asp-action="Index">Profile</a>
+            &copy; 2021 - MyMeds - <a asp-area="" asp-controller="DailyTask" asp-action="Index">Profile</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

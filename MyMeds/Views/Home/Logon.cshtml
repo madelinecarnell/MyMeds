@@ -5,18 +5,27 @@
 @using Newtonsoft.Json
 @model MyMeds.Models.LogonModel
 
-<h1>Logon</h1>
+<h1>Welcome, please login.</h1>
 
 @using (Html.BeginForm("LoginBtn", "Home", FormMethod.Post))
 {
+    @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+    <br />
+    <a>Username:</a>
+    <br />
     <td>
         @Html.TextBoxFor(model => model.UserId)
-        @Html.ValidationMessageFor(model => model.UserId)
     </td>
+    <br />
+    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+    <br />
+    <a>Password:</a>
+    <br />
     <td>
         @Html.TextBoxFor(model => model.Password)
-        @Html.ValidationMessageFor(model => model.Password)
     </td>
-    <input type="submit" value="LoginBtn" />
+    <br />
+    <br />
+    <input class="btn-primary" type="submit" value="Login" />
 }
 
