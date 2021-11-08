@@ -26,6 +26,6 @@ namespace MyMeds.Models
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Invalid Phone Number")]
         public string PharmacyPhone { get; set; }
 
-        public ICollection<Medication> Medications { get; set; }
+        public ICollection<MedicationModel> Medications { get; set; }
     }
 }

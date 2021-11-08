@@ -8,7 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using MyMeds.Controllers;
 using MyMeds.Data;
 
 namespace MyMeds
@@ -28,7 +30,12 @@ namespace MyMeds
             services.AddDbContext<MyMedsContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("MyMedsContext")));
             services.AddControllersWithViews();
-            services.AddRazorPages();
+            services.AddRazorPages(options =>
+            {
+                options.Conventions.AuthorizeFolder("/Medications");
+                options.Conventions.AuthorizeFolder("/DailyTask");
+            });
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,16 +53,14 @@ namespace MyMeds
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Logon}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
