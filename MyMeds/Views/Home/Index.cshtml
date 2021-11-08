@@ -20,42 +20,66 @@
     <br />
     <label>Medication</label><br />
 
-    @foreach(MedicationModel med in Model.Medication)
+    @foreach (MedicationModel med in Model.Medication)
     {
         <input type="checkbox" />
         <label>Took @med.MedicationName at @med.TimeTaken</label><br />
         <hr />
+        if (med.Refills == 0)
+        {
+            <label>@med.MedicationName has 0 refills. Please contact @med.Prescriber for refills.</label>
+        }
     }
-    @*@if (ViewBag.MedicationName1 != null)
+    @if (ViewBag.MedicationName1 != null)
+    {
+        <input type="checkbox" />
+        <label>Took @ViewBag.MedicationName1 at @ViewBag.MedicationTime1</label><br />
+        if (ViewBag.Refills == 0)
         {
-            <input type="checkbox" />
-            <label>Took @ViewBag.MedicationName1 at @ViewBag.MedicationTime1</label><br />
-            <hr />
+            <label>@ViewBag.MedicationName has 0 refills. Please contact @ViewBag.Prescriber for refills.</label>
         }
-        @if (ViewBag.MedicationName2 != null)
+        <hr />
+    }
+    @if (ViewBag.MedicationName2 != null)
+    {
+        <input type="checkbox" />
+        <label>Took @ViewBag.MedicationName2 at @ViewBag.MedicationTime2</label><br />
+        if (ViewBag.Refills == 0)
         {
-            <input type="checkbox" />
-            <label>Took @ViewBag.MedicationName2 at @ViewBag.MedicationTime2</label><br />
-            <hr />
+            <label>@ViewBag.MedicationName has 0 refills. Please contact @ViewBag.Prescriber for refills.</label>
         }
-        @if(ViewBag.MedicationName3 != null)
+        <hr />
+    }
+    @if (ViewBag.MedicationName3 != null)
+    {
+        <input type="checkbox" />
+        <label>Took @ViewBag.MedicationName3 at @ViewBag.MedicationTime3</label><br />
+        if (ViewBag.Refills == 0)
         {
-            <input type="checkbox" />
-            <label>Took @ViewBag.MedicationName3 at @ViewBag.MedicationTime3</label><br />
-            <hr />
+            <label>@ViewBag.MedicationName has 0 refills. Please contact @ViewBag.Prescriber for refills.</label>
         }
-        @if(ViewBag.MedicationName4 != null)
+        <hr />
+    }
+    @if (ViewBag.MedicationName4 != null)
+    {
+        <input type="checkbox" />
+        <label>Took @ViewBag.MedicationName4 at @ViewBag.MedicationTime4</label><br />
+        if (ViewBag.Refills == 0)
         {
-            <input type="checkbox" />
-            <label>Took @ViewBag.MedicationName4 at @ViewBag.MedicationTime4</label><br />
-            <hr />
+            <label>@ViewBag.MedicationName has 0 refills. Please contact @ViewBag.Prescriber for refills.</label>
         }
-        @if(ViewBag.MedicationName5 != null)
+        <hr />
+    }
+    @if (ViewBag.MedicationName5 != null)
+    {
+        <input type="checkbox" />
+        <label>Took @ViewBag.MedicationName5 at @ViewBag.MedicationTime5</label><br />
+        if (ViewBag.Refills == 0)
         {
-            <input type="checkbox" />
-            <label>Took @ViewBag.MedicationName5 at @ViewBag.MedicationTime5</label><br />
-            <hr />
-        }*@
+            <label>@ViewBag.MedicationName has 0 refills. Please contact @ViewBag.Prescriber for refills.</label>
+        }
+        <hr />
+    }
 </div>
 }
 
