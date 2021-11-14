@@ -36,7 +36,7 @@
         <label>Took @ViewBag.MedicationName1 at @ViewBag.MedicationTime1</label><br />
         if (ViewBag.Refills == 0)
         {
-            <label>@ViewBag.MedicationName has 0 refills. Please contact @ViewBag.Prescriber for refills.</label>
+            <label>@ViewBag.MedicationName has 0 refills. Please contact @ViewBag.Prescriber (@ViewBag.PrescriberPhone) for refills.</label>
         }
         <hr />
     }
@@ -44,10 +44,12 @@
     {
         <input type="checkbox" />
         <label>Took @ViewBag.MedicationName2 at @ViewBag.MedicationTime2</label><br />
-        if (ViewBag.Refills == 0)
+        if (ViewBag.Refills == 0 && ViewBag.Prescriber != null)
         {
-            <label>@ViewBag.MedicationName has 0 refills. Please contact @ViewBag.Prescriber for refills.</label>
+            if (ViewBag.Prescriber != null) {<label>@ViewBag.MedicationName has 0 refills. Please contact @ViewBag.Prescriber (@ViewBag.PrescriberPhone) for refills.</label> }
+            
         }
+
         <hr />
     }
     @if (ViewBag.MedicationName3 != null)
@@ -56,7 +58,7 @@
         <label>Took @ViewBag.MedicationName3 at @ViewBag.MedicationTime3</label><br />
         if (ViewBag.Refills == 0)
         {
-            <label>@ViewBag.MedicationName has 0 refills. Please contact @ViewBag.Prescriber for refills.</label>
+<label>@ViewBag.MedicationName has 0 refills. Please contact @ViewBag.Prescriber (@ViewBag.PrescriberPhone) for refills.</label>
         }
         <hr />
     }
@@ -66,7 +68,7 @@
         <label>Took @ViewBag.MedicationName4 at @ViewBag.MedicationTime4</label><br />
         if (ViewBag.Refills == 0)
         {
-            <label>@ViewBag.MedicationName has 0 refills. Please contact @ViewBag.Prescriber for refills.</label>
+<label>@ViewBag.MedicationName has 0 refills. Please contact @ViewBag.Prescriber (@ViewBag.PrescriberPhone) for refills.</label>
         }
         <hr />
     }
@@ -76,7 +78,7 @@
         <label>Took @ViewBag.MedicationName5 at @ViewBag.MedicationTime5</label><br />
         if (ViewBag.Refills == 0)
         {
-            <label>@ViewBag.MedicationName has 0 refills. Please contact @ViewBag.Prescriber for refills.</label>
+<label>@ViewBag.MedicationName has 0 refills. Please contact @ViewBag.Prescriber (@ViewBag.PrescriberPhone) for refills.</label>
         }
         <hr />
     }

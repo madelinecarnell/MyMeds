@@ -4,6 +4,10 @@ using MyMeds.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Logging;
+using MyMeds.Data;
+using Microsoft.EntityFrameworkCore;
+using Castle.Core.Internal;
+using System.Threading.Tasks;
 
 namespace MyMedsTest
 {
@@ -63,6 +67,33 @@ namespace MyMedsTest
             var homeLogon = controller.LoginBtn(logon, logon.UserId, logon.Password);
             var config = homeLogon.ToString();
             Assert.IsFalse(config.Contains("Index"));
+        }
+
+
+        [Test]
+        public async Task Details()
+        {
+            var med = new MedicationModel();
+            med.Id = 1;
+            med.MedicationName = "test drug";
+            var dbContext = new DbContextOptions<MyMedsContext>();
+            var context = new MyMedsContext(dbContext);
+            var controller = new MedicationsController(context);
+            var medicationEdit = await controller.Details(med.Id);
+            Assert.IsFalse(medicationEdit.ToString().IsNullOrEmpty());
+        }
+
+        [Test]
+        public async Task EditMedication()
+        {
+            var med = new MedicationModel();
+            med.Id = 1;
+            med.MedicationName = "test drug";
+            var dbContext = new DbContextOptions<MyMedsContext>();
+            var context = new MyMedsContext(dbContext);
+            var controller = new MedicationsController(context);
+            var medicationEdit = await controller.Edit(med.Id);
+            Assert.IsFalse(medicationEdit.ToString().IsNullOrEmpty());
         }
     }
 }
