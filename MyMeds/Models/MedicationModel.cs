@@ -1,7 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace MyMeds.Models
+﻿namespace MyMeds.Models
 {
     public class MedicationModel
     {
@@ -12,7 +9,6 @@ namespace MyMeds.Models
         public string Prescriber { get; set; }
         public int Refills { get; set; }
         public string Pharmacy { get; set; }
-        [DataType(DataType.DateTime)]
         public DateTime TimeTaken { get; set; }
     }
 }

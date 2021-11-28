@@ -1,0 +1,36 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+@if (User.Identity.IsAuthenticated)
+{
+    @if(Model != null)
+    {
+        <div class="text-center">
+            <h1 class="display-4">MyMeds for: @Html.DisplayFor(model => model.UserModel.UserId)</h1>
+        </div>
+        <br/>
+        <br/>
+        <div>
+            <h2>
+                Daily Reminders for <span id='date'></span>
+            </h2>
+            <br/>
+            <label>Medication</label><br/>
+            @foreach (var med in Model.UserModel.Medications)
+            {
+                <input type="checkbox"/>
+                <label>Took @med.MedicationName at @med.TimeTaken</label>
+                <br/>
+                <hr/>
+            }
+        </div>
+    }
+}
+
+<script>
+    var dt = new Date();
+    var dateFormat = dt.toDateString();
+    document.getElementById('date').innerHTML = dateFormat;
+</script>
