@@ -20,11 +20,16 @@
             <label>Medication</label><br/>
             @foreach (var med in Model.UserModel.Medications)
             {
-                <input type="checkbox"/>
-                <label>Took @med.MedicationName at @med.TimeTaken</label>
+                <label>Took @med.MedicationName at @med.TimeTaken.ToLongTimeString(). </label>
+                @if (@med.Refills == 0)
+                {
+                    <label>@med.MedicationName has 0 Refills. Please contact @med.Prescriber (Prescriber). </label>
+                }
                 <br/>
                 <hr/>
             }
+             <br/>
+             <label>Reminder: Update refills as they are used. </label><br/>
         </div>
     }
 }

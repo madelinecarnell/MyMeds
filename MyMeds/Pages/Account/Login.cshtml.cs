@@ -39,6 +39,7 @@ namespace MyMeds.Pages.Account
         {
             returnUrl ??= Url.Content("~/");
             var result = await _userServices.PasswordSignIn(Credential.UserName, Credential.Password);
+
             if (result)
             {
                 var establishedClaim = new List<Claim>

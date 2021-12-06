@@ -36,7 +36,7 @@ namespace MyMeds.Services
                 LogonUser.PrescriberPhone = result.PrescriberPhone;
             }
 
-            if (LogonUser.Id == null) return Task.FromResult(false);
+            if (LogonUser.LoginId is 0) return Task.FromResult(false);
 
             const string procedure2 = "[SelectMedicine]";
             var value = new { LogonsId = LogonUser.LoginId };
